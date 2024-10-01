@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/cewbost/jiota/issues"
   },
-  "homepage": "https://github.com/cewbost/jiota#readme"
+  "homepage": "https://github.com/cewbost/jiota#readme",
+  "dependencies": {
+    "bignumber.js": "^9.1.2",
+    "deep-equal": "^2.2.3"
+  }
 }
