@@ -1,6 +1,7 @@
 # Jiota
 
 A matcher library for Javascript, inspired by [Gomega](https://onsi.github.io/gomega/).
+
 Not currently available on npm, may never be.
 
 ## Usage
@@ -11,7 +12,7 @@ const { expect, equal } = require("jiota")
 expect(1).to(equal(1))
 ```
 
-Failed assertions are reported by throwing exceptions.
+Failed assertions are reported by throwing `Error`.
 
 ## Provided matchers
 
