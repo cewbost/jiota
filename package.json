@@ -4,7 +4,7 @@
   "description": "A matchers library, Gomega for Javascript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/cewbost/jiota#readme",
   "dependencies": {
     "bignumber.js": "^9.1.2",
-    "deep-equal": "^2.2.3"
+    "deep-equal": "^2.2.3",
+    "mocha": "^11.0.1"
   }
 }
