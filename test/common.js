@@ -1,4 +1,4 @@
-var assert = require('assert')
+var assert = require('node:assert')
 
 function match(res) {
   if (res.length != 0) {

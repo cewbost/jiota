@@ -125,3 +125,13 @@ match capture groups in the regular expression.
 ```js
 expect("key=123").to(matchRegexp("^([a-z]+):([1-9][0-9]+)$", "key", beNumber(123)))
 ```
+
+### beBase64
+
+Asserts that a string is base64 encoded. A matcher can be provided to make assertions on the decoded
+data.
+
+```js
+expect("ZEdWemRBbz0=").to(beBase64())
+expect("dGVzdAo=").to(beBase64("test\n"))
+```

@@ -9,6 +9,7 @@ const { beEmpty       } = require("./be_empty.js")
 const { matchElements } = require("./match_elements.js")
 const { beApprox      } = require("./be_approx.js")
 const { matchRegExp   } = require("./match_regexp.js")
+const { beBase64      } = require("./be_base64.js")
 
 module.exports = {
   expect:        expect,
@@ -22,4 +23,5 @@ module.exports = {
   matchElements: matchElements,
   beApprox:      beApprox,
   matchRegExp:   matchRegExp,
+  beBase64:      beBase64,
 }
