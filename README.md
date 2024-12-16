@@ -116,3 +116,12 @@ expect({
   },
 }))
 ```
+
+### matchRegExp
+
+Asserts that a string matches a regular expression. Extra matchers or values can be provided to
+match capture groups in the regular expression.
+
+```js
+expect("key=123").to(matchRegexp("^([a-z]+):([1-9][0-9]+)$", "key", beNumber(123)))
+```

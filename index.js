@@ -8,6 +8,7 @@ const { consistOf     } = require("./consist_of.js")
 const { beEmpty       } = require("./be_empty.js")
 const { matchElements } = require("./match_elements.js")
 const { beApprox      } = require("./be_approx.js")
+const { matchRegExp   } = require("./match_regexp.js")
 
 module.exports = {
   expect:        expect,
@@ -20,4 +21,5 @@ module.exports = {
   beEmpty:       beEmpty,
   matchElements: matchElements,
   beApprox:      beApprox,
+  matchRegExp:   matchRegExp,
 }
