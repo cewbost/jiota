@@ -1,4 +1,5 @@
 const { Matcher } = require('./matcher.js')
+const { equal } = require('./equal.js')
 
 class MatchElementsMatcher extends Matcher {
   #matchers
@@ -24,7 +25,7 @@ class MatchElementsMatcher extends Matcher {
         if (match.length != 0) messages.push([String(idx), match])
       }
     }
-    if (obj.length != matchers.length) return [
+    if (messages.length != 0) return [
       ["expected", JSON.stringify(obj)],
       ["to match elements", this.#matchers.map(m => [m.description()])],
     ].concat(messages)
