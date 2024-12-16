@@ -1,5 +1,5 @@
-var { match, no_match } = require('./common.js')
-var { beNumber } = require('../be_number.js')
+const { match, no_match } = require('./common.js')
+const { beNumber } = require('../be_number.js')
 const { BigNumber } = require('bignumber.js')
 
 describe("beNumber", () => {

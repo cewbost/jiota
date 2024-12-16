@@ -1,5 +1,5 @@
-var { match, no_match } = require('./common.js')
-const { beInstanceOf  } = require("../be_instance_of.js")
+const { match, no_match } = require('./common.js')
+const { beInstanceOf } = require("../be_instance_of.js")
 
 class Foo {
   constructor(a, b) {

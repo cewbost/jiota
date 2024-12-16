@@ -1,5 +1,5 @@
-var { match, no_match } = require('./common.js')
-var { equal } = require('../equal.js')
+const { match, no_match } = require('./common.js')
+const { equal } = require('../equal.js')
 
 describe("equal", () => {
   it("should match when values are equal", () => {

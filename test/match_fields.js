@@ -1,5 +1,5 @@
-var { match, no_match } = require('./common.js')
-var { matchFields } = require('../match_fields.js')
+const { match, no_match } = require('./common.js')
+const { matchFields } = require('../match_fields.js')
 
 describe("matchFields", () => {
   it("should match fields", () => {
