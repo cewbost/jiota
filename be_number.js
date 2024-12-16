@@ -15,7 +15,13 @@ class NumberMatcher extends Matcher {
 
   match(obj) {
     let num = BigNumber(obj)
-    if (this.#value.isEqualTo(num)) {
+    if (this.#value.isNaN()) {
+      if (!num.isNaN()) return []
+      else return [
+        ["expected", JSON.stringify(obj)],
+        ["to be a number", ""],
+      ]
+    } else if (this.#value.isEqualTo(num)) {
       return []
     } else {
       return [
@@ -26,8 +32,9 @@ class NumberMatcher extends Matcher {
   }
 }
 
-function beNumber(num) {
-  return new NumberMatcher(num)
+function beNumber() {
+  if (arguments.length >= 1) return new NumberMatcher(arguments[0])
+  else return new NumberMatcher(null)
 }
 
 module.exports = {

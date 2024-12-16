@@ -41,10 +41,13 @@ expect(new Error("error")).to(beInstanceOf(Error))
 
 ### beNumber
 
-Asserts that a value is a number.
+Asserts that a value is a number. If a number is provided it checks that the matched value is equal.
+Otherwise only asserts that it is a number. Uses
+[bignumber](https://mikemcl.github.io/bignumber.js/) internally.
 
 ```js
 expect(5).to(beNumber())
+expect("700").to(beNumber("0x2bc"))
 ```
 
 ### consistOf
