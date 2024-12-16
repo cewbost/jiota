@@ -2,7 +2,6 @@ var assert = require('assert')
 
 function match(res) {
   if (res.length != 0) {
-    console.log(res)
     throw Error('does not match')
   }
 }
