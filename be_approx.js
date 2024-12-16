@@ -1,5 +1,4 @@
 const { Matcher } = require('./matcher.js')
-const { BigNumber } = require('bignumber.js')
 
 class BeApproxMatcher extends Matcher {
   #value
