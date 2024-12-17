@@ -119,4 +119,13 @@ describe("expect", () => {
       "error: test error"
     )
   })
+  it("should report and matcher correctly", () => {
+    let ex
+    try {
+      expect(1).to((new TestMatcher({errors: "test error 1"})).and(new TestMatcher({errors: "test error 2"})))
+    } catch (e) {
+      ex = e
+    }
+    assert.equal(ex.message, "expected 1\nto match test and match test\nerror: test error 1")
+  })
 })
