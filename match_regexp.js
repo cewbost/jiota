@@ -29,11 +29,7 @@ class RegExpMatcher extends Matcher {
       else {
         const capture = matches[idx + 1]
         const res = matcher.match(capture)
-        if (res != null) {
-          const key = `[${idx}]`
-          ret[key] = res
-          ret[key].object = capture
-        }
+        if (res != null) ret[`[${idx}]`] = {object: capture, sub: res}
       }
     }
     return Object.keys(ret).length != 0 ? ret : null

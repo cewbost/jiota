@@ -26,11 +26,7 @@ class Base64Matcher extends Matcher {
     if (this.#matcher == null) return null
     const val = buf.toString()
     const match = this.#matcher.match(val)
-    if (match != null) {
-      match.object = val
-      return match
-    }
-    return null
+    return match != null? {object: val, sub: match} : null
   }
 }
 
