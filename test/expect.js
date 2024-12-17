@@ -11,7 +11,7 @@ describe("expect", () => {
     } catch (e) {
       ex = e
     }
-    assert.equal(ex.message, "expected 1\nto match test\n" + msg)
+    assert.equal(ex.message, "\nexpected 1\nto match test\n" + msg)
   }
 
   it("should do nothing when matcher returns null", () => {
@@ -109,7 +109,7 @@ describe("expect", () => {
     } catch (e) {
       ex = e
     }
-    assert.equal(ex.message, "expected 1\nto match test and match test\nerror: test error 1")
+    assert.equal(ex.message, "\nexpected 1\nto match test and match test\nerror: test error 1")
   })
   it("should return captured values", () => {
     let [a, b] = expect(1).to(new TestCaptureMatcher([1, 2]))
