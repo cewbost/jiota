@@ -16,7 +16,7 @@ class InstanceOfMatcher extends Matcher {
   }
 
   description() {
-    return "instance of " + JSON.stringify(this.#type)
+    return "be instance of " + JSON.stringify(this.#type)
   }
 }
 

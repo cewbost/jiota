@@ -17,7 +17,7 @@ class EqualMatcher extends Matcher {
   }
 
   description() {
-    return "= " + this.#value
+    return "equal " + this.#value
   }
 }
 

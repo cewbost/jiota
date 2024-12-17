@@ -37,10 +37,8 @@ class RegExpMatcher extends Matcher {
 
   description() {
     if (this.#matchers.length == 0) return "match regexp " + this.#regexp.toString()
-    else return "match regexp " +
-      this.#regexp.toString() +
-      " and submatches matching " +
-      this.#matchers.map(m => m.description()).join(", ")
+    else return "match regexp " + this.#regexp.toString() +
+      " and submatches matching [" + this.#matchers.map(m => m.description()).join(", ") + "]"
   }
 }
 

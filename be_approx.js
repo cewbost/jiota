@@ -10,15 +10,15 @@ class BeApproxMatcher extends Matcher {
     this.#delta = delta
   }
 
-  description() {
-    return `=~ ${this.#value} +- ${this.#delta}`
-  }
-
   match(obj) {
     if (Math.abs(obj - this.#value) < this.#delta) return null
     else return {
       errors: "expected " + JSON.stringify(obj) + ` to be approximately ${this.#value} +- ${this.#delta}`,
     }
+  }
+
+  description() {
+    return `be approximately ${this.#value} +- ${this.#delta}`
   }
 }
 

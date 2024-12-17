@@ -6,7 +6,7 @@ class Matcher {
   }
 
   description() {
-    return "base matcher"
+    return "match something"
   }
 
   and(other) {

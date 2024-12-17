@@ -16,7 +16,7 @@ class ContainMatcher extends Matcher {
   }
 
   description() {
-    return "contains " + this.#value
+    return "contain " + this.#value
   }
 }
 

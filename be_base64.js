@@ -28,6 +28,14 @@ class Base64Matcher extends Matcher {
     const match = this.#matcher.match(val)
     return match != null? {object: val, sub: match} : null
   }
+
+  description() {
+    if (this.#matcher == null) return "be base64 encoded"
+    else {
+      let desc = this.#matcher.description()
+      return `${desc} in base64`
+    }
+  }
 }
 
 function beBase64() {

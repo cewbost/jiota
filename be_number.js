@@ -9,10 +9,6 @@ class NumberMatcher extends Matcher {
     this.#value = BigNumber(number)
   }
 
-  description() {
-    return "= " + this.#value.toString()
-  }
-
   match(obj) {
     let num = BigNumber(obj)
     if (this.#value.isNaN()) {
@@ -23,6 +19,11 @@ class NumberMatcher extends Matcher {
     } else {
       return {errors: "expected " + this.#value.toString() + " to equal " + num.toString()}
     }
+  }
+
+  description() {
+    if (this.#value.isNaN()) return "be a number"
+    else return "equal " + this.#value.toString()
   }
 }
 

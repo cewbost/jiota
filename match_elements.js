@@ -30,7 +30,7 @@ class MatchElementsMatcher extends Matcher {
   }
 
   description() {
-    return "match elements " + this.#matchers.map(m => m.description()).join(", ")
+    return "match elements [" + this.#matchers.map(m => m.description()).join(", ") + "]"
   }
 }
 
