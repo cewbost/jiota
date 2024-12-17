@@ -12,6 +12,10 @@ class Matcher {
   and(other) {
     return __andWrapper(this, other)
   }
+
+  captures() {
+    return []
+  }
 }
 
 class AndMatcher extends Matcher {

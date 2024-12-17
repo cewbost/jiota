@@ -32,6 +32,10 @@ class MatchElementsMatcher extends Matcher {
   description() {
     return "match elements [" + this.#matchers.map(m => m.description()).join(", ") + "]"
   }
+
+  captures() {
+    return this.#matchers.map((m) => m.captures()).flat()
+  }
 }
 
 function matchElements(matchers) {

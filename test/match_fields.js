@@ -1,5 +1,6 @@
-const { match, no_match } = require('./common.js')
+const { TestCaptureMatcher, match, no_match } = require('./common.js')
 const { matchFields } = require('../match_fields.js')
+const assert = require('node:assert')
 
 describe("matchFields", () => {
   it("should match fields", () => {
@@ -25,5 +26,15 @@ describe("matchFields", () => {
   })
   it("should fail if expected field does not exist", () => {
     no_match(matchFields({"foo": 1, "bar": 2, "baz": 3}).match({"foo": 1, "baz": 3}))
+  })
+  it("should propagate captures from submatcher", () => {
+    assert.deepEqual(
+      matchFields({
+        "a": new TestCaptureMatcher([]),
+        "b": new TestCaptureMatcher([1]),
+        "c": new TestCaptureMatcher([2, 3]),
+      }).captures(),
+      [1, 2, 3]
+    )
   })
 })

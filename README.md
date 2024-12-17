@@ -14,6 +14,13 @@ expect(1).to(equal(1))
 
 Failed assertions are reported by throwing `Error`.
 
+The method `and` allows the construction of matcher conjunctions, which make multiple assertions on
+the same object.
+
+```js
+expect([1, 2]).to((contain(1)).and(contain(2)))
+```
+
 Some matchers can have submatchers. Those matchers can be replaced with non-matcher values, which
 are treated as `equal` matchers.
 
@@ -23,11 +30,12 @@ expect([1, 2]).to(consistOf([1, 2]))
 expect([1, 2]).to(consistOf([equal(1), equal(2)]))
 ```
 
-The method `and` allows the construction of matcher conjunctions, which make multiple assertions on
-the same object.
+Inputs to submatchers can captured using the `capture` matcher. The captured values are returned
+from `expect`.
 
 ```js
-expect([1, 2]).to((contain(1)).and(contain(2)))
+let [a, b] = expect("key=123").to(matchRegExp("^([a-z]+)=([0-9]+)$", capture(), capture()))
+// now a = "val" and b = "123"
 ```
 
 ## Provided matchers
@@ -150,4 +158,18 @@ data.
 ```js
 expect("ZEdWemRBbz0=").to(beBase64())
 expect("dGVzdAo=").to(beBase64("test\n"))
+```
+
+### capture
+
+Performs no assertion, but captures the value passed to it, which is then returned from `expect`.
+
+```js
+let a = expect("ZEdWemRBbz0=").to(beBase64(capture()))
+```
+
+You can make further assertions by passing a matcher to `capture`.
+
+```js
+let a = expect("ZEdWemRBbz0=").to(beBase64(capture(equal("test\n"))))
 ```

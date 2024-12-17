@@ -38,6 +38,10 @@ class FieldsMatcher extends Matcher {
     }
     return "match fields {" + matchs.join(", ") + "}"
   }
+
+  captures() {
+    return Object.values(this.#matchers).map((m) => m.captures()).flat()
+  }
 }
 
 function matchFields(obj) {

@@ -1,5 +1,6 @@
-const { match, no_match } = require('./common.js')
-const { matchRegExp } = require("../match_regexp.js")
+const { TestCaptureMatcher, match, no_match } = require('./common.js')
+const { matchRegExp } = require('../match_regexp.js')
+const assert = require('node:assert')
 
 describe("matchRegExp", () => {
   it("should match", () => {
@@ -25,5 +26,15 @@ describe("matchRegExp", () => {
   })
   it("should fail when submatch is missing", () => {
     no_match(matchRegExp("^a(b+)c$", "bb", "cc").match("abbc"))
+  })
+  it("should propagate captures from submatcher", () => {
+    assert.deepEqual(
+      matchRegExp("^(a+)(b+)(c+)$",
+      new TestCaptureMatcher([]),
+      new TestCaptureMatcher([1]),
+      new TestCaptureMatcher([2, 3])
+      ).captures(),
+      [1, 2, 3]
+    )
   })
 })

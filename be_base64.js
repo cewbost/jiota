@@ -36,6 +36,10 @@ class Base64Matcher extends Matcher {
       return `${desc} in base64`
     }
   }
+
+  captures() {
+    return this.#matcher == null? [] : this.#matcher.captures()
+  }
 }
 
 function beBase64() {

@@ -1,23 +1,6 @@
-const { Matcher } = require('../matcher.js')
 const { expect } = require('../expect.js')
+const { TestMatcher, TestCaptureMatcher } = require('./common.js')
 const assert = require('node:assert')
-
-class TestMatcher extends Matcher {
-  #res
-
-  constructor (res) {
-    super()
-    this.#res = res
-  }
-
-  match(obj) {
-    return this.#res
-  }
-
-  description() {
-    return "match test"
-  }
-}
 
 describe("expect", () => {
 
@@ -127,5 +110,10 @@ describe("expect", () => {
       ex = e
     }
     assert.equal(ex.message, "expected 1\nto match test and match test\nerror: test error 1")
+  })
+  it("should return captured values", () => {
+    let [a, b] = expect(1).to(new TestCaptureMatcher([1, 2]))
+    assert.equal(a, 1)
+    assert.equal(b, 2)
   })
 })

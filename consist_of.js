@@ -37,6 +37,10 @@ class ConsistOfMatcher extends Matcher {
   description() {
     return "consist of [" + this.#matchers.map(m => m.description()).join(", ") + "]"
   }
+
+  captures() {
+    return this.#matchers.map((m) => m.captures()).flat()
+  }
 }
 
 function consistOf(matchers) {

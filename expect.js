@@ -51,6 +51,8 @@ class Expectation {
     let res = matcher.match(this.#obj)
     if (res != null) {
       throw new AssertionFailed(this.#obj, matcher, res)
+    } else {
+      return matcher.captures()
     }
   }
 }
