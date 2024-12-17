@@ -1,5 +1,3 @@
-const { AssertionFailed } = require('./error.js')
-
 let __andWrapper = null
 
 class Matcher {
