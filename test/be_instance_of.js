@@ -17,10 +17,12 @@ class Bar {
 }
 
 describe("beInstanceOf", () => {
-  it("should match types", () => {
-    assert.equal(null, beInstanceOf(Foo).match(new Foo(1, 2)))
-  })
-  it("should fail when types are not the same", () => {
-    assert.notEqual(null, beInstanceOf(Bar).match(new Foo(1, 2)))
+  describe("match", () => {
+    it("should match types", () => {
+      assert.equal(null, beInstanceOf(Foo).match(new Foo(1, 2)))
+    })
+    it("should fail when types are not the same", () => {
+      assert.notEqual(null, beInstanceOf(Bar).match(new Foo(1, 2)))
+    })
   })
 })
