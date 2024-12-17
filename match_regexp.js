@@ -20,27 +20,23 @@ class RegExpMatcher extends Matcher {
   }
 
   match(obj) {
-    if (typeof obj !== "string") return ["expected string"]
+    if (typeof obj !== "string") return {errors: "expected string"}
     let matches = obj.match(this.#regexp)
-    if (matches == null) return [
-      ["matching regexp against", JSON.stringify(obj)],
-      ["no match for:", this.#regexp.toString()],
-    ]
-    let messages = []
+    if (matches == null) return {errors: "no match"}
+    let ret = {}
     for (const [matcher, idx] of this.#matchers.map((matcher, idx) => [matcher, idx])) {
-      if (matches.length <= idx + 1) messages.push(["no submatch for matcher ", `${idx + 1}`])
+      if (matches.length <= idx + 1) ret[`[${idx}]`] = {errors: "no submatch"}
       else {
-        const res = matcher.match(matches[idx + 1])
-        if (res.length != 0) messages.push([`on submatch ${idx + 1}`, res])
+        const capture = matches[idx + 1]
+        const res = matcher.match(capture)
+        if (res != null) {
+          const key = `[${idx}]`
+          ret[key] = res
+          ret[key].object = capture
+        }
       }
     }
-    if (messages.length > 0) return [
-      ["expected", JSON.stringify(obj)],
-      ["split by regex", this.#regexp.toString()],
-      ["into", matches],
-      ["to match", this.#matchers.map(m => [m.description()])],
-    ].concat(messages)
-    return []
+    return Object.keys(ret).length != 0 ? ret : null
   }
 
   description() {

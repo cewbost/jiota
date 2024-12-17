@@ -8,18 +8,15 @@ class InstanceOfMatcher extends Matcher {
     this.#type = type
   }
 
-  description() {
-    return "instance of " + JSON.stringify(this.#type)
-  }
-
   match(obj) {
     if (!(obj instanceof this.#type)) {
-      return [
-        ["expected", JSON.stringify(obj)],
-        ["to be instance of", JSON.stringify(this.#type)],
-      ]
+      return {errors: "expected " + JSON.stringify(obj) + " to be instance of " + JSON.stringify(this.#type)}
     }
-    return []
+    return null
+  }
+
+  description() {
+    return "instance of " + JSON.stringify(this.#type)
   }
 }
 

@@ -7,11 +7,8 @@ class EmptyMatcher extends Matcher {
   }
 
   match(obj) {
-    if (obj.length != 0) return [
-      ["expected", JSON.stringify(obj)],
-      ["to be empty"],
-    ]
-    return []
+    if (obj.length != 0) return {errors: "expected " + JSON.stringify(obj) + " to be empty"}
+    return null
   }
 }
 

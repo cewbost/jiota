@@ -16,18 +16,12 @@ class NumberMatcher extends Matcher {
   match(obj) {
     let num = BigNumber(obj)
     if (this.#value.isNaN()) {
-      if (!num.isNaN()) return []
-      else return [
-        ["expected", JSON.stringify(obj)],
-        ["to be a number", ""],
-      ]
+      if (!num.isNaN()) return null
+      else return {errors: "expected " + JSON.stringify(obj) + "to be a number"}
     } else if (this.#value.isEqualTo(num)) {
-      return []
+      return null
     } else {
-      return [
-        ["expected", "0x" + this.#value.toString(16)],
-        ["to equal", "0x" + num.toString(16)],
-      ]
+      return {errors: "expected " + this.#value.toString() + " to equal " + num.toString()}
     }
   }
 }

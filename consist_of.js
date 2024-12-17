@@ -20,7 +20,7 @@ class ConsistOfMatcher extends Matcher {
     for (const elem of obj) {
       let matched = false
       for (const idx in matchers) {
-        if (matchers[idx].match(elem).length == 0) {
+        if (matchers[idx].match(elem) == null) {
           matched = true
           matchers.splice(idx, 1)
           break
@@ -28,18 +28,10 @@ class ConsistOfMatcher extends Matcher {
       }
       if (!matched) unmatched.push(elem)
     }
-    let messages = []
-    if (unmatched.length > 0) {
-      messages.push(["unmatched elements:", unmatched.map(m => [JSON.stringify(m)])])
-    }
-    if (matchers.length > 0) {
-      messages.push(["unsatisfied matchers:", matchers.map(m => [m.description()])])
-    }
-    if (messages.length > 0) return [
-      ["expected", JSON.stringify(obj)],
-      ["to consist of", this.#matchers.map(m => [m.description()])],
-    ].concat(messages)
-    return []
+    let errors = []
+    for (const elem of unmatched) errors.push("no match for " + JSON.stringify(elem))
+    for (const matcher of matchers) errors.push("no element matching " + matcher.description())
+    return errors.length > 0? {errors: errors} : null
   }
 
   description() {

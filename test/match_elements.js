@@ -4,7 +4,7 @@ const { Matcher } = require("../matcher.js")
 
 class matchAnything extends Matcher {
   match(obj) {
-    return []
+    return null
   }
 }
 

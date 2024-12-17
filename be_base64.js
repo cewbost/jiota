@@ -18,20 +18,19 @@ class Base64Matcher extends Matcher {
 
   match(obj) {
     if (typeof obj !== "string") {
-      return ["expected string"]
+      return {errors: "expected string"}
     } else if (!obj.match(new RegExp("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"))) {
-      return ["expected base64 encoded string"]
+      return {errors: "expected base64 encoded string"}
     }
     const buf = Buffer.from(obj, "base64")
-    if (this.#matcher == null) return []
+    if (this.#matcher == null) return null
     const val = buf.toString()
     const match = this.#matcher.match(val)
-    if (match.length != 0) return [
-      ["expected base64 encoded", obj.toString()],
-      ["decoded as ", val],
-      ["errors: ", match]
-    ]
-    return []
+    if (match != null) {
+      match.object = val
+      return match
+    }
+    return null
   }
 }
 

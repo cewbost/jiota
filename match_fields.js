@@ -18,24 +18,16 @@ class FieldsMatcher extends Matcher {
   }
 
   match(obj) {
-    let messages = []
+    let ret = {}
     for (const [key, matcher] of Object.entries(this.#matchers)) {
       if (!(key in obj)) {
-        messages.push([`expected to have property ${key}`])
+        ret[`.${key}`] = {errors: "missing property"}
       } else {
         const match = matcher.match(obj[key])
-        if (match.length > 0) {
-          messages.push([`on property ${key}:`, match])
-        }
+        if (match != null) ret[`.${key}`] = match
       }
     }
-    if (messages.length > 0) {
-      return [
-        ["matching fields on", JSON.stringify(obj)],
-        ["failed with errors:", messages],
-      ]
-    }
-    return []
+    return Object.keys(ret).length != 0 ? ret : null
   }
 
   description() {

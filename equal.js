@@ -11,12 +11,9 @@ class EqualMatcher extends Matcher {
 
   match(obj) {
     if (!deepEqual(this.#value, obj)) {
-      return [
-        ["expected", JSON.stringify(obj)],
-        ["to equal", JSON.stringify(this.#value)],
-      ]
+      return {errors: JSON.stringify(obj) + " != " + JSON.stringify(this.#value)}
     }
-    return []
+    return null
   }
 
   description() {
