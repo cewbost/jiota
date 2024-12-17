@@ -14,6 +14,22 @@ expect(1).to(equal(1))
 
 Failed assertions are reported by throwing `Error`.
 
+Some matchers can have submatchers. Those matchers can be replaced with non-matcher values, which
+are treated as `equal` matchers.
+
+```js
+expect([1, 2]).to(consistOf([1, 2]))
+// same as:
+expect([1, 2]).to(consistOf([equal(1), equal(2)]))
+```
+
+The method `and` allows the construction of matcher conjunctions, which make multiple assertions on
+the same object.
+
+```js
+expect([1, 2]).to((contain(1)).and(contain(2)))
+```
+
 ## Provided matchers
 
 ### beApprox
