@@ -1,31 +1,31 @@
-const { TestCaptureMatcher, match, no_match } = require('./common.js')
+const { TestCaptureMatcher } = require('./common.js')
 const { matchFields } = require('../match_fields.js')
 const assert = require('node:assert')
 
 describe("matchFields", () => {
   it("should match fields", () => {
-    match(matchFields({"foo": 1, "bar": 2}).match({"foo": 1, "bar": 2}))
+    assert.equal(null, matchFields({"foo": 1, "bar": 2}).match({"foo": 1, "bar": 2}))
   })
   it("should ignore extra fields", () => {
-    match(matchFields({"foo": 1, "bar": 2}).match({"foo": 1, "bar": 2, "baz": 3}))
+    assert.equal(null, matchFields({"foo": 1, "bar": 2}).match({"foo": 1, "bar": 2, "baz": 3}))
   })
   it("should match nested", () => {
-    match(matchFields({
+    assert.equal(null, matchFields({
       "first": matchFields({"x": 1, "y": 2}),
       "second": matchFields({"x": 3, "y": 4}),
     }).match({"first": {"x": 1, "y": 2}, "second": {"x": 3, "y": 4}}))
   })
   it("should fail if matcher fails", () => {
-    no_match(matchFields({"foo": 1, "bar": 2, "baz": 3}).match({"foo": 1, "bar": 1, "baz": 3}))
+    assert.notEqual(null, matchFields({"foo": 1, "bar": 2, "baz": 3}).match({"foo": 1, "bar": 1, "baz": 3}))
   })
   it("should fail if nested matcher fails", () => {
-    no_match(matchFields({
+    assert.notEqual(null, matchFields({
       "first": matchFields({"x": 1, "y": 2}),
       "second": matchFields({"x": 3, "y": 4}),
     }).match({"first": {"x": 1, "y": 2}, "second": {"x": 3, "y": 3}}))
   })
   it("should fail if expected field does not exist", () => {
-    no_match(matchFields({"foo": 1, "bar": 2, "baz": 3}).match({"foo": 1, "baz": 3}))
+    assert.notEqual(null, matchFields({"foo": 1, "bar": 2, "baz": 3}).match({"foo": 1, "baz": 3}))
   })
   it("should propagate captures from submatcher", () => {
     assert.deepEqual(

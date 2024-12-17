@@ -1,5 +1,5 @@
-const { match, no_match } = require('./common.js')
-const { beInstanceOf } = require("../be_instance_of.js")
+const { beInstanceOf } = require('../be_instance_of.js')
+const assert = require('node:assert')
 
 class Foo {
   constructor(a, b) {
@@ -18,9 +18,9 @@ class Bar {
 
 describe("beInstanceOf", () => {
   it("should match types", () => {
-    match(beInstanceOf(Foo).match(new Foo(1, 2)))
+    assert.equal(null, beInstanceOf(Foo).match(new Foo(1, 2)))
   })
   it("should fail when types are not the same", () => {
-    no_match(beInstanceOf(Bar).match(new Foo(1, 2)))
+    assert.notEqual(null, beInstanceOf(Bar).match(new Foo(1, 2)))
   })
 })

@@ -1,17 +1,17 @@
-const { match, no_match } = require('./common.js')
-const { beEmpty } = require("../be_empty.js")
+const { beEmpty } = require('../be_empty.js')
+const assert = require('node:assert')
 
 describe("beEmpty", () => {
   it("should match empty arrays", () => {
-    match(beEmpty().match([]))
+    assert.equal(null, beEmpty().match([]))
   })
   it("should match empty strings", () => {
-    match(beEmpty().match(""))
+    assert.equal(null, beEmpty().match(""))
   })
   it("should not match non-empty arrays", () => {
-    no_match(beEmpty().match([1]))
+    assert.notEqual(null, beEmpty().match([1]))
   })
   it("should not match non-empty strings", () => {
-    no_match(beEmpty().match("asd"))
+    assert.notEqual(null, beEmpty().match("asd"))
   })
 })
