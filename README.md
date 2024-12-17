@@ -76,8 +76,7 @@ expect("700").to(beNumber("0x2bc"))
 
 ### consistOf
 
-Asserts that an array consists of elements matching a list of matchers. The list of expected matches
-can be matchers. Non matcher values are matched using the `equal` matcher. The assertion fails if
+Asserts that an array consists of elements matching a list of matchers. The assertion fails if
 there isn't a one-to-one matching between the actual values and the matchers. The matching algorithm
 is greedy, so don't rely on it being very smart, it will not be able to find every possible valid
 matching. If the provided matchers match on mutually exclusive values it will always work however.
@@ -112,8 +111,7 @@ expect(obj).to(equal({"a": [1, 2], "b": [3, 4]}))
 
 ### matchElements
 
-Asserts that the elements of an array matches an array of matchers. If non-matcher values are
-provided the elements are matched using `equal`.
+Asserts that the elements of an array matches an array of matchers.
 
 ```js
 expect([[], [1], [1, 2]]).to(matchElements([beEmpty(), [1], [1, 2]]))
@@ -121,8 +119,7 @@ expect([[], [1], [1, 2]]).to(matchElements([beEmpty(), [1], [1, 2]]))
 
 ### matchFields
 
-Asserts that an object contains properties matching provided matchers. If non-matcher values are
-provided then matching is done using `equal`. Extra values are ignored.
+Asserts that an object contains properties matching provided matchers. Extra values are ignored.
 
 ```js
 expect({
@@ -158,6 +155,15 @@ data.
 ```js
 expect("ZEdWemRBbz0=").to(beBase64())
 expect("dGVzdAo=").to(beBase64("test\n"))
+```
+
+### throwException
+
+Asserts that a given function throws an exception. A matcher can be provided to make assertions on
+the thrown exception.
+
+```js
+expect(() => { throw "test" }).to(throwException("test"))
 ```
 
 ### capture
