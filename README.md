@@ -40,6 +40,25 @@ let [a, b] = expect("key=123").to(matchRegExp("^([a-z]+)=([0-9]+)$", capture(), 
 
 ## Provided matchers
 
+### equal
+
+Asserts deep equality.
+
+```js
+let obj = {}
+obj["a"] = [1, 2]
+obj["b"] = [3, 4]
+expect(obj).to(equal({"a": [1, 2], "b": [3, 4]}))
+```
+
+### not
+
+Asserts that the provided matcher will fail.
+
+```js
+expect(1).to(not(equal(2)))
+```
+
 ### beApprox
 
 Asserts that a number is within the range `(expected - delta; expected + delta)`.
@@ -96,17 +115,6 @@ Asserts that an array includes a value. Matching is done by calling `actual.incl
 
 ```js
 expect([1, 2, 3]).to(contain(2))
-```
-
-### equal
-
-Asserts that two values are deeply equal.
-
-```js
-let obj = {}
-obj["a"] = [1, 2]
-obj["b"] = [3, 4]
-expect(obj).to(equal({"a": [1, 2], "b": [3, 4]}))
 ```
 
 ### matchElements
