@@ -11,7 +11,7 @@ describe("eventually", () => {
     } catch (e) {
       ex = e
     }
-    assert.equal(ex.message, "\nexpected 1\nto match test\n" + msg)
+    assert.equal(ex.message, "\nexpected value to eventually match test\ngot 1\n" + msg)
   }
 
   it("should do nothing when matcher returns null", async () => {
@@ -111,7 +111,10 @@ describe("eventually", () => {
     } catch (e) {
       ex = e
     }
-    assert.equal(ex.message, "\nexpected 1\nto match test and match test\nerror: test error 1")
+    assert.equal(
+      ex.message,
+      "\nexpected value to eventually match test and match test\ngot 1\nerror: test error 1",
+    )
   })
   it("should return captured values", async () => {
     let [a, b] = await eventually(async () => 1).should(new TestCaptureMatcher([1, 2]))

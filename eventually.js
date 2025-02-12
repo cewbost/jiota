@@ -36,7 +36,9 @@ class EventualExpectation {
       await new Promise(r => setTimeout(r, this.#delay_ms))
     }
     if (res != null) {
-      throw new AssertionFailed(obj, matcher, res)
+      const msg = "\nexpected value to eventually " + matcher.description() +
+        "\ngot " + JSON.stringify(obj)
+      throw new AssertionFailed(msg, matcher, res)
     } else {
       return matcher.captures()
     }

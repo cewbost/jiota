@@ -29,8 +29,7 @@ function writeError(msg, level, obj) {
 }
 
 class AssertionFailed extends Error {
-  constructor(obj, matcher, cause) {
-    const msg = "\nexpected " + JSON.stringify(obj) + "\nto " + matcher.description()
+  constructor(msg, matcher, cause) {
     super(writeError(msg, 0, cause))
     this.name = "AssertionFailed"
   }

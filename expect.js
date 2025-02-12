@@ -16,7 +16,8 @@ class Expectation {
     }
     let res = matcher.match(this.#obj)
     if (res != null) {
-      throw new AssertionFailed(this.#obj, matcher, res)
+      const msg = "\nexpected " + JSON.stringify(this.#obj) + "\nto " + matcher.description()
+      throw new AssertionFailed(msg, matcher, res)
     } else {
       return matcher.captures()
     }
