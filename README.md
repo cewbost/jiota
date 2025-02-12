@@ -38,6 +38,22 @@ let [a, b] = expect("key=123").to(matchRegExp("^([a-z]+)=([0-9]+)$", capture(), 
 // now a = "val" and b = "123"
 ```
 
+### Making asynchronous assertions
+
+Replace `expect(...).to(...)` with `eventually(...).should(...)` to make an assertion repeatedly
+until it either passes or fails after a number of tries. `eventually` expects an asynchronous
+function, and `should` is itself an asynchronous function.
+
+```js
+await expect(async () => 1).to(equal(1))
+```
+
+The number of retries and the delay between retries can be controlled using the `within` method.
+
+```js
+await expect(someFunc).within({retries: 5, delay_ms: 200}).to(equal(1))
+```
+
 ## Provided matchers
 
 ### equal
