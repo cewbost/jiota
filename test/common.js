@@ -3,7 +3,7 @@ const { Matcher } = require('../matcher.js')
 class TestMatcher extends Matcher {
   #res
 
-  constructor (res) {
+  constructor(res) {
     super()
     this.#res = res
   }
@@ -38,7 +38,28 @@ class TestCaptureMatcher extends Matcher {
   }
 }
 
+class TestSequenceMatcher extends Matcher {
+  #res
+  #idx
+
+  constructor(res) {
+    super()
+    this.#res = res
+  }
+
+  match(obj) {
+    let res = this.#res[this.#idx]
+    this.#idx++
+    return res
+  }
+
+  description() {
+    return "match test"
+  }
+}
+
 module.exports = {
-  TestMatcher:        TestMatcher,
-  TestCaptureMatcher: TestCaptureMatcher,
+  TestMatcher:         TestMatcher,
+  TestCaptureMatcher:  TestCaptureMatcher,
+  TestSequenceMatcher: TestSequenceMatcher,
 }
